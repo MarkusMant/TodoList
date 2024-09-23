@@ -17,7 +17,7 @@ function TodoList() {
         }
     }
     const handleDelete = (row) => {
-        setTodos(todos.filter((desc, index) => index != row))
+        setTodos(todos.filter((desc, index) => index != row));
 
     }
 
