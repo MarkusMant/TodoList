@@ -2,6 +2,13 @@ import { useRef, useState } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-material.css"; // Optional Theme applied to the Data Grid
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+//import AdapterDayjs from '@mui/x-date-pickers/AdapterDayjs';
+//import LocalizationProvider from '@mui/x-date-pickers/LocalizationProvider';
+
 
 function TodoList() {
     const [desc, setDesc] = useState({
@@ -44,26 +51,25 @@ function TodoList() {
 
     return (
         <>
-            <h3>My Todos</h3>
-            <input
-                label="Description"
-                placeholder="Description"
-                value={desc.description}
-                onChange={e => setDesc({ ...desc, description: e.target.value })}
-            />
-            <input
-                placeholder="Priority"
-                value={desc.priority}
-                onChange={e => setDesc({ ...desc, priority: e.target.value })}
-            />
-            <input
-                label="Date"
-                type="date"
-                value={desc.date}
-                onChange={e => setDesc({ ...desc, date: e.target.value })}
-            />
-            <button onClick={handleAdd}>Add Todo</button>
-            <button onClick={handleDelete}>Delete</button>
+            <Stack mt={2} direction="row" spacing={1} justifyContent="center" alignItems="center">
+                <TextField
+                    label="Description"
+                    value={desc.description}
+                    onChange={e => setDesc({ ...desc, description: e.target.value })}
+                />
+                <TextField
+                    label="Priority"
+                    value={desc.priority}
+                    onChange={e => setDesc({ ...desc, priority: e.target.value })}
+                />
+                <TextField
+                    label="Date"
+                    value={desc.date}
+                    onChange={e => setDesc({ ...desc, date: e.target.value })}
+                />
+                <Button variant="contained" color="success" onClick={handleAdd}>Add Todo</Button>
+                <Button variant="contained" color="error" endIcon={<DeleteIcon />} onClick={handleDelete}>Delete</Button>
+            </Stack>
             <div className="ag-theme-material"
                 style={{
                     height: 500, width: 600
