@@ -9,13 +9,12 @@ import Stack from '@mui/material/Stack';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from "dayjs";
 
 
 function TodoList() {
     const [desc, setDesc] = useState({
         description: "",
-        dayjs,
+        date: null,
         priority: ""
     });
 
@@ -37,11 +36,11 @@ function TodoList() {
     ]);
 
     const handleAdd = () => {
-        if (!desc.description.trim() & !desc.date.trim()) {
-            alert("Type description first!");
+        if (!desc.description.trim() || !desc.date) {
+            alert("Type description and pick a date first!");
         } else {
             setTodos([...todos, desc]);
-            setDesc({ description: "", date: "", priority: "" });
+            setDesc({ description: "", date: null, priority: "" });
         }
     }
     const handleDelete = () => {
