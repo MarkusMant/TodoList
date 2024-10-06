@@ -6,14 +6,16 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-//import AdapterDayjs from '@mui/x-date-pickers/AdapterDayjs';
-//import LocalizationProvider from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from "dayjs";
 
 
 function TodoList() {
     const [desc, setDesc] = useState({
         description: "",
-        date: "",
+        dayjs,
         priority: ""
     });
 
@@ -62,11 +64,13 @@ function TodoList() {
                     value={desc.priority}
                     onChange={e => setDesc({ ...desc, priority: e.target.value })}
                 />
-                <TextField
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
                     label="Date"
                     value={desc.date}
-                    onChange={e => setDesc({ ...desc, date: e.target.value })}
+                    onChange={newValue => setDesc({...desc, date: newValue})}
                 />
+                </LocalizationProvider>
                 <Button variant="contained" color="success" onClick={handleAdd}>Add Todo</Button>
                 <Button variant="contained" color="error" endIcon={<DeleteIcon />} onClick={handleDelete}>Delete</Button>
             </Stack>
