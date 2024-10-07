@@ -33,7 +33,7 @@ function TodoList() {
             floatingFilter: true,
             animateRow: true
         },
-        { field: "date", filter: true, floatingFilter: true, animateRow: true }
+        { field: "date", filter: true, valueFormatter: params => params.value.format("MM/DD/YYYY"), floatingFilter: true, animateRow: true }
     ]);
 
     const handleAdd = () => {
@@ -41,7 +41,7 @@ function TodoList() {
             alert("Type description and pick a date first!");
         } else {
             setTodos([...todos, desc]);
-            setDesc({ description: "", date: null, priority: "" });
+            setDesc({ description: "", dayjs, priority: "" });
         }
     }
     const handleDelete = () => {
@@ -74,10 +74,11 @@ function TodoList() {
                 </LocalizationProvider>
                 <Button variant="contained" color="success" onClick={handleAdd}>Add Todo</Button>
                 <Button variant="contained" color="error" endIcon={<DeleteIcon />} onClick={handleDelete}>Delete</Button>
+
             </Stack>
             <div className="ag-theme-material"
                 style={{
-                    height: 500, width: 600
+                    height: 500, width: 600, margin: "auto"
                 }}>
                 <AgGridReact
                     ref={gridRef}
