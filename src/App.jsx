@@ -4,6 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { Link, Outlet } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function App() {
   return (
@@ -11,9 +13,17 @@ function App() {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+          <Button
+
+            sx={{ my: 2, color: 'white', display: 'block' }}>
+            Home
+          </Button>
+          <Button
+
+            sx={{ my: 2, color: 'white', display: 'block' }}>
             My Todos
-          </Typography>
+          </Button>
+
         </Toolbar>
       </AppBar>
       <TodoList />
